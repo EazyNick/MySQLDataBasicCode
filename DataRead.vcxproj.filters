@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DataRead.cpp">
+    <ClCompile Include="DataWrite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataRead.h">
+    <ClInclude Include="DataWrite.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
