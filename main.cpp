@@ -10,7 +10,6 @@ int main() {
 
 	readDataFromDB(server, username, password, database);
 
-
 	return 0;
 }
 
