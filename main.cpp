@@ -2,9 +2,15 @@
 
 int main() {
 
-	initializeDatabase();
-	createTable();
-	insertData();
+	// 전역 변수
+	const string server = "tcp://localhost:12333";
+	const string username = "root";
+	const string password = "Password12#";
+	const string database = "example_db";
+
+	initializeDatabase(server, username, password, database);
+	createTable(server, username, password, database);
+	insertData(server, username, password, database);
 
 	return 0;
 }
