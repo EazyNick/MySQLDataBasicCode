@@ -6,18 +6,17 @@
 #include <iostream>
 #include <memory>
 
-using namespace std;
-
 // 전역 변수
 const string server = "tcp://localhost:12333";
 const string username = "root";
 const string password = "Password12#";
+const string database = "example_db";
 
-void initializeDatabase() {
+void initializeDatabase(const std::string& server, const std::string& username, const std::string& password, const std::string& database) {
     try {
         sql::Driver* driver = get_driver_instance();
         unique_ptr<sql::Connection> con(driver->connect(server, username, password));
-        con->setSchema("example_db");
+        con->setSchema(database);
     }
     catch (sql::SQLException& e) {
         cout << "Could not connect to server. Error message: " << e.what() << endl;
@@ -25,10 +24,10 @@ void initializeDatabase() {
     }
 }
 
-void createTable() {
+void createTable(const std::string& server, const std::string& username, const std::string& password, const std::string& database) {
     try {
         unique_ptr<sql::Connection> con(get_driver_instance()->connect(server, username, password));
-        con->setSchema("example_db");
+        con->setSchema(database);
         unique_ptr<sql::Statement> stmt(con->createStatement());
         stmt->execute("DROP TABLE IF EXISTS inventory");
         stmt->execute("CREATE TABLE inventory (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);");
@@ -39,10 +38,10 @@ void createTable() {
     }
 }
 
-void insertData() {
+void insertData(const std::string& server, const std::string& username, const std::string& password, const std::string& database) {
     try {
         unique_ptr<sql::Connection> con(get_driver_instance()->connect(server, username, password));
-        con->setSchema("example_db");
+        con->setSchema(database);
         unique_ptr<sql::PreparedStatement> pstmt;
         pstmt.reset(con->prepareStatement("INSERT INTO inventory(name, quantity) VALUES(?,?)"));
         pstmt->setString(1, "banana");
